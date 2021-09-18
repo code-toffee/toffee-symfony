@@ -1,0 +1,74 @@
+# 注册接口
+POST {{host}}/api/register
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+  "username": "user1",
+  "password": "123456",
+  "nickname": "hai",
+  "identity": 2,
+  "phone": "13333333333",
+  "code": "1234"
+}
+
+###
+
+# 申请图片验证码接口
+GET {{host}}/api/verify/img-code
+
+###
+
+# 登陆接口
+POST {{host}}/api/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "phone": "13333333333",
+  "password": "123456",
+  "code": "uqg1",
+  "key": "498b3d5c27259405db0986f5ea415de6803199e0d90a6e5393c1361bdd6de19c",
+  "rember": false
+}
+
+> {% client.global.set('token',response.body.result.token); %}
+
+###
+
+# 登出接口
+GET {{host}}/api/logout
+#GET {{host}}/api/logout
+Authorization: {{token}}
+
+###
+
+# 重置密码接口
+#POST {{host}}/api/reset-pwd
+POST {{host}}/api/reset-pwd
+Content-Type: application/json
+
+{
+  "phone": "13353870922",
+  "password": "123456",
+  "code": "1234"
+}
+
+###
+
+# 获取用户数据
+GET {{host}}/api/user/get-user-info
+Authorization: {{token}}
+
+###
+
+# 修改用户密码
+POST {{host}}/api/user/modify-password
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "password": "123456"
+}
+
+###
